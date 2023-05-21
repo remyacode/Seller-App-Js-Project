@@ -12,8 +12,8 @@ btn.addEventListener('click', addItem);
 itemList.addEventListener('click', removeItem);
 
 
-let crudid = 'a2f271ac144f4c1f8ffbf95bb7a85fa7';
-
+let crudid = '90990b255aae42b2b9b9ddd17567a9ce';
+/*
 window.onload = () => {
    
     axios.get(`https://crudcrud.com/api/${crudid}/seller`)
@@ -23,9 +23,23 @@ window.onload = () => {
                 showOutput(e)
             });
         })
+          
 }
+*/
+window.onload = async () => {
+    try {
+      const response = await axios.get(`https://crudcrud.com/api/${crudid}/seller`);
+      const data = response.data;
+      data.forEach(e => {
+        showOutput(e);
+      });
+    } catch (error) {
+      // Handle any errors that occurred during the request
+      console.error(error);
+    }
+  };
 // Add item
-function addItem(e) {
+async function addItem(e) {
     e.preventDefault();
     let newPrice = document.getElementById('price').value;
     let newName = document.getElementById('name').value;
@@ -46,9 +60,18 @@ function addItem(e) {
 
     } else { }
         */
+       /*
         axios.post(`https://crudcrud.com/api/${crudid}/seller`, postObj)
             .then(res => showOutput(res.data))
-   
+   */
+            try {
+                const response = await axios.post(`https://crudcrud.com/api/${crudid}/seller`, postObj);
+                const data = response.data;
+                showOutput(data);
+              } catch (error) {
+                // Handle any errors that occurred during the request
+                console.error(error);
+              }
     form.reset()
 }
 // Remove item
